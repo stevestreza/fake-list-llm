@@ -22,11 +22,14 @@ This will generate 20 band names using the default model (`qwen/qwen-turbo`) and
 
 ### Command Line Options
 
-- `-m, --model <model>`: Model to use (default: `qwen/qwen-turbo`)
-- `-e, --endpoint <url>`: API endpoint URL (default: `https://openrouter.ai/api/v1`)
-- `-k, --api-key <key>`: API key (defaults to `OPENROUTER_API_KEY` environment variable)
-- `-p, --prompt <prompt>`: Custom prompt template (use `{count}` and `{concept}` as placeholders)
-- `--verbose`: Enable verbose output
+- `-m, --model <model>`: Model to use (overrides config file)
+- `-e, --endpoint <url>`: API endpoint URL (overrides config file)
+- `-k, --api-key <key>`: API key (overrides config file and environment variable)
+- `-p, --prompt <prompt>`: Custom prompt template (overrides config file)
+- `--verbose`: Enable verbose output (overrides config file)
+- `-c, --config <path>`: Path to custom config file
+- `--init-config`: Create default user config file
+- `--show-config-paths`: Show config file search paths
 
 ### Examples
 
@@ -47,6 +50,62 @@ This will generate 20 band names using the default model (`qwen/qwen-turbo`) and
 ./index.js 12 "desserts" --verbose
 ```
 
+## Configuration Files
+
+The tool supports configuration files in TOML format with proper layering:
+
+1. **System config** (read-only, for administrators)
+2. **User config** (your personal settings)
+3. **Override config** (specified with `--config`)
+4. **Command line options** (highest priority)
+
+### Config File Locations
+
+The tool follows XDG Base Directory specification:
+
+**Linux:**
+- System: `/etc/xdg/fake-list/config.toml`
+- User: `~/.config/fake-list/config.toml`
+
+**macOS:**
+- System: `/Library/Preferences/fake-list/config.toml`
+- User: `~/Library/Preferences/fake-list/config.toml`
+
+**Windows:**
+- System: `C:\ProgramData\fake-list\config.toml`
+- User: `%APPDATA%\fake-list\config.toml`
+
+### Creating Your Config File
+
+```bash
+# Create default user config file
+./index.js --init-config
+
+# Show where config files are located
+./index.js --show-config-paths
+```
+
+### Configuration Options
+
+All options can be set in config files:
+
+```toml
+# AI model to use
+model = "qwen/qwen-turbo"
+
+# API endpoint URL
+endpoint = "https://openrouter.ai/api/v1"
+
+# API key (leave empty to use environment variable)
+# apiKey = "your-api-key-here"
+
+# Default prompt template
+prompt = "Generate a list of {count} {concept}. Each item should be on a new line, numbered from 1 to {count}."
+
+# Enable verbose output by default
+verbose = false
+```
+
 ### Environment Variables
 
 Set your OpenRouter API key:
@@ -58,7 +117,9 @@ export OPENROUTER_API_KEY="your-api-key-here"
 ## Features
 
 - **Streaming responses**: Results are streamed to the terminal as they're generated
-- **Flexible configuration**: Customizable model, endpoint, API key, and prompt
+- **Flexible configuration**: Customizable model, endpoint, API key, and prompt via config files or CLI
+- **Configuration layering**: System → User → Override → CLI options (highest priority)
+- **XDG-compliant paths**: Follows standard configuration file locations across platforms
 - **OpenAI-compatible**: Works with any OpenAI-compatible API endpoint
 - **Error handling**: Clear error messages for common issues
 - **Verbose mode**: Optional detailed output for debugging

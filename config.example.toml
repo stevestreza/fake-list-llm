@@ -1,0 +1,38 @@
+# Fake List Generator Configuration Example
+# Copy this file to your user config directory or use --config to specify it
+
+# AI model to use
+# Popular models on OpenRouter:
+# - qwen/qwen-turbo (default, fast and cheap)
+# - anthropic/claude-3-haiku (fast)
+# - anthropic/claude-3-sonnet (balanced)
+# - openai/gpt-4o-mini (OpenAI's latest)
+# - meta-llama/llama-3.1-8b-instruct (Llama)
+model = "qwen/qwen-turbo"
+
+# API endpoint URL
+# Default OpenRouter endpoint
+endpoint = "https://openrouter.ai/api/v1"
+
+# For OpenAI directly:
+# endpoint = "https://api.openai.com/v1"
+
+# For other providers, check their documentation
+
+# API key (leave empty to use OPENROUTER_API_KEY environment variable)
+# You can set your API key here or use the environment variable
+# apiKey = "your-api-key-here"
+
+# Default prompt template
+# Use {count} and {concept} as placeholders
+# The AI will replace these with your actual count and concept
+prompt = "Generate a list of {count} {concept}. Each item should be on a new line, numbered from 1 to {count}."
+
+# Alternative prompt examples:
+# prompt = "Create {count} creative {concept}:"
+# prompt = "List {count} {concept} that are trending in 2024:"
+# prompt = "Generate {count} unique {concept} for a creative project:"
+
+# Enable verbose output by default
+# When true, shows model, endpoint, and progress information
+verbose = false
