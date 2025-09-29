@@ -15,7 +15,7 @@ npm install
 ### Basic Usage
 
 ```bash
-./index.js 20 "band names"
+fake-list-llm 20 "band names"
 ```
 
 This will generate 20 band names using the default model (`qwen/qwen-turbo`) and OpenRouter endpoint.
@@ -35,19 +35,19 @@ This will generate 20 band names using the default model (`qwen/qwen-turbo`) and
 
 ```bash
 # Generate 10 colors
-./index.js 10 "colors"
+fake-list-llm 10 "colors"
 
 # Use a different model
-./index.js 15 "animals" --model "anthropic/claude-3-haiku"
+fake-list-llm 15 "animals" --model "anthropic/claude-3-haiku"
 
 # Use a custom endpoint
-./index.js 5 "fruits" --endpoint "https://api.openai.com/v1"
+fake-list-llm 5 "fruits" --endpoint "https://api.openai.com/v1"
 
 # Use a custom prompt
-./index.js 8 "programming languages" --prompt "List {count} {concept} that are popular in 2024:"
+fake-list-llm 8 "programming languages" --prompt "List {count} {concept} that are popular in 2024:"
 
 # Verbose output
-./index.js 12 "desserts" --verbose
+fake-list-llm 12 "desserts" --verbose
 ```
 
 ## Configuration Files
@@ -64,25 +64,25 @@ The tool supports configuration files in TOML format with proper layering:
 The tool follows XDG Base Directory specification:
 
 **Linux:**
-- System: `/etc/xdg/fake-list/config.toml`
-- User: `~/.config/fake-list/config.toml`
+- System: `/etc/xdg/fake-list-llm/config.toml`
+- User: `~/.config/fake-list-llm/config.toml`
 
 **macOS:**
-- System: `/Library/Preferences/fake-list/config.toml`
-- User: `~/Library/Preferences/fake-list/config.toml`
+- System: `/Library/Preferences/fake-list-llm/config.toml`
+- User: `~/Library/Preferences/fake-list-llm/config.toml`
 
 **Windows:**
-- System: `C:\ProgramData\fake-list\config.toml`
-- User: `%APPDATA%\fake-list\config.toml`
+- System: `C:\ProgramData\fake-list-llm\config.toml`
+- User: `%APPDATA%\fake-list-llm\config.toml`
 
 ### Creating Your Config File
 
 ```bash
 # Create default user config file
-./index.js --init-config
+fake-list-llm --init-config
 
 # Show where config files are located
-./index.js --show-config-paths
+fake-list-llm --show-config-paths
 ```
 
 ### Configuration Options

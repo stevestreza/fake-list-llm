@@ -18,13 +18,13 @@ class ConfigManager {
   getConfigPaths() {
     const paths = [];
     
-    // System-wide config (Linux: /etc/xdg/fake-list/config.toml, macOS: /Library/Preferences/fake-list/config.toml, Windows: C:\ProgramData\fake-list\config.toml)
+    // System-wide config (Linux: /etc/xdg/fake-list-llm/config.toml, macOS: /Library/Preferences/fake-list-llm/config.toml, Windows: C:\ProgramData\fake-list-llm\config.toml)
     if (process.platform === 'linux') {
-      paths.push('/etc/xdg/fake-list/config.toml');
+      paths.push('/etc/xdg/fake-list-llm/config.toml');
     } else if (process.platform === 'darwin') {
-      paths.push('/Library/Preferences/fake-list/config.toml');
+      paths.push('/Library/Preferences/fake-list-llm/config.toml');
     } else if (process.platform === 'win32') {
-      paths.push(path.join(process.env.PROGRAMDATA || 'C:\\ProgramData', 'fake-list', 'config.toml'));
+      paths.push(path.join(process.env.PROGRAMDATA || 'C:\\ProgramData', 'fake-list-llm', 'config.toml'));
     }
 
     // User config (XDG_CONFIG_HOME or equivalent)
@@ -38,7 +38,7 @@ class ConfigManager {
     }
     
     if (userConfigDir) {
-      paths.push(path.join(userConfigDir, 'fake-list', 'config.toml'));
+      paths.push(path.join(userConfigDir, 'fake-list-llm', 'config.toml'));
     }
 
     return paths;
@@ -105,7 +105,7 @@ class ConfigManager {
       // Create default config file if it doesn't exist
       if (!fs.existsSync(userConfigPath)) {
         const defaultConfigContent = `# Fake List Generator Configuration
-# This file contains default settings for the fake-list tool
+# This file contains default settings for the fake-list-llm tool
 
 # AI model to use (default: qwen/qwen-turbo)
 model = "qwen/qwen-turbo"

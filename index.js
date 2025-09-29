@@ -43,7 +43,7 @@ class FakeListGenerator {
           headers: {
             'Authorization': `Bearer ${this.apiKey}`,
             'Content-Type': 'application/json',
-            'HTTP-Referer': 'https://github.com/yourusername/fake-list',
+            'HTTP-Referer': 'https://github.com/stevestreza/fake-list-llm',
             'X-Title': 'Fake List Generator'
           },
           responseType: 'stream'
@@ -124,7 +124,7 @@ function main() {
   }
 
   program
-    .name('fake-list')
+    .name('fake-list-llm')
     .description('Generate lists using OpenAI-compatible APIs')
     .version('1.0.0')
     .option('-m, --model <model>', 'Model to use')

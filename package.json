@@ -1,10 +1,10 @@
 {
-  "name": "fake-list",
+  "name": "fake-list-llm",
   "version": "1.0.0",
   "description": "Generate lists using OpenAI-compatible APIs",
   "main": "index.js",
   "bin": {
-    "fake-list": "./index.js"
+    "fake-list-llm": "./index.js"
   },
   "scripts": {
     "start": "node index.js",
